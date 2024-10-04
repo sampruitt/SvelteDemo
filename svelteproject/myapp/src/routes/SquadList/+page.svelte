@@ -1,6 +1,6 @@
-<script lang="ts">
+<script>
     import { onMount } from 'svelte';
-    /** @type import ('/lib/index').SquadData */
+    /** @type import ('../../lib/index').SquadData */
     let squadData = { players: [] };
     let selectedTeam = '';
 
@@ -92,7 +92,7 @@
 };
 onMount(() => {
         const savedSquad = localStorage.getItem('CustomSquad');
-        if (savedSquad) {
+        if (savedSquad && selectedTeam === 'Custom') {
             squadData = JSON.parse(savedSquad).Custom;
         }
     });
@@ -111,6 +111,7 @@ onMount(() => {
                 squadData = teamSquads[selectedTeam];
             }
         } else {
+            // @ts-ignore
             squadData = teamSquads[selectedTeam];
         }
     }
@@ -134,7 +135,7 @@ onMount(() => {
     </select>
 
 
-{#if squadData.players.length > 0}
+{#if (squadData?.players?.length ?? 0) > 0}
     <table id="squadTable">
     <thead>
         <tr>
@@ -144,7 +145,7 @@ onMount(() => {
         </tr>
     </thead>
     <tbody>
-        {#each squadData.players as player}
+        {#each (squadData?.players ?? []) as player}
         <tr>
             <td>{player.name}</td>
             <td>{player.position}</td>
@@ -158,81 +159,3 @@ onMount(() => {
 {/if}
 </div>
 <p><button on:click={clearLocalStorage}>Clear Squads</button></p>
-<p><button id="backButton"><a href="/">navigate back to previous page</a></button></p>
-
-<!-- <style>
-    body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: url('/assets/webbackground.jpg');
-    background-size: cover;
-    }
-
-    .container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-    text-align: center;
-    color: #333;
-    }
-
-    table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    }
-
-    th {
-    background-color: #4CAF50;
-    color: white;
-    }
-
-    tbody tr:nth-child(odd) {
-    background-color: #f2f2f2;
-    }
-
-    tbody tr:hover {
-    background-color: #e0f7fa;
-    cursor: pointer;
-    }
-
-    tbody tr:nth-child(even) {
-    background-color: #ffffff;
-    }
-
-    #backButton {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    }
-
-    #backButton:hover {
-    background-color: #45a049;
-    }
-
-    #backButton:active {
-    background-color: #3e8e41;
-    }
-</style> -->

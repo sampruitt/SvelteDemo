@@ -1,28 +1,3 @@
-<!--<script>
-    import '../styles.css';
-</script>
-
-
-<form method="POST" action="?/submit">
-    <input type="text" name="player" placeholder="Enter your player for your squad" required>
-</form>
--->
-
-<!-- <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: left;
-    }
-    th {
-        background-color: #f4f4f4;
-    }
-</style> -->
-
 <script>
     import { squadStore } from '../../../stores/squadstore.js';
     import { onMount } from 'svelte';
