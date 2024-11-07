@@ -33,12 +33,13 @@ a:active {
 h1 {
     text-align: center;
     color: #ffffff;
-    margin: 0;
-    padding: 10px 20px;
+    margin: 0 auto;
+    padding: 20px 20px;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(50, 50, 50, 0.8));
-    display: inline-block;
-    width: auto;
-    margin-left: 200px;
+    width: fit-content;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
 }
 .content {
     display: flex;
@@ -46,7 +47,6 @@ h1 {
     max-width: calc(100% - 200px);
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-left: 200px;
     padding: 20px;
     overflow-y: auto;
     box-sizing: border-box;
@@ -148,87 +148,99 @@ button:hover {
     margin-top: 20px;
 }
 
+/* Navbar container */
+.navbar {
+    position: fixed;
+    top: 0; /* Aligns the navbar at the top */
+    left: 0;
+    width: 100%; /* Full width across the top */
+    height: 60px; /* Set a fixed height for the top bar */
+    background-color: #2c5e2e;
+    display: flex;
+    flex-direction: row; /* Horizontal alignment */
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Remove top padding */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+/* Navbar collapsed class for toggle (if needed) */
+.navbar.collapsed {
+    height: 60px; /* Keep the same height */
+    width: 100%;
+}
+
+
+
+/* Navbar container */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 200px;
+    width: 100%;
+    height: 60px;
     background-color: #2c5e2e;
     display: flex;
-    flex-direction: column;
-    padding-top: 60px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, width 0.3s ease;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     z-index: 10;
 }
 
-.navbar.collapsed {
-    width: 60px;
-}
-
-.toggle-button {
-    display: none;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #3c763d;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    z-index: 20;
-}
-
+/* Navbar links for horizontal layout */
 .navbar a {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 10px 15px;
     text-decoration: none;
     font-size: 18px;
     color: white;
     transition: background 0.3s ease;
     z-index: 10;
-    margin-top: 20px;
+    margin: 0 10px;
 }
 
-.navbar a:hover {
-    background-color: #3c763d;
-}
-
+/* Icon spacing */
 .nav-item i {
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
+/* Ensure text is always visible on larger screens */
 .nav-item .nav-text {
     display: inline;
+    white-space: nowrap;
 }
 
-.navbar.collapsed .nav-text {
-    display: none;
-}
+/* Responsive adjustments */
 
+/* Medium screens (e.g., tablets) */
 @media (max-width: 768px) {
     .navbar {
-        width: 150px;
+        padding: 0 10px;
+        justify-content: space-between; /* Spread items to edges for space */
     }
 
-    main {
-        margin-left: 150px;
+    .navbar a {
+        font-size: 16px; /* Reduce font size */
+        padding: 10px 8px;
     }
 }
 
+/* Small screens (e.g., mobile phones) */
 @media (max-width: 480px) {
     .navbar {
-        width: 60px;
+        justify-content: space-around; /* Distribute items evenly across the screen */
     }
 
-    .toggle-button {
-        display: block;
+    .nav-item .nav-text {
+        display: none; /* Hide text on small screens to show icons only */
     }
 
-    main {
-        margin-left: 60px;
+    .navbar a {
+        padding: 10px; /* Compact padding for mobile */
+        font-size: 14px; /* Smaller font size */
     }
 }
